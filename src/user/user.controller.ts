@@ -10,13 +10,13 @@ export class UserController {
     constructor(private userService: UserService) {
     }
 
-    @Post('login')
+    @Post('auth/login')
     @UsePipes(new ValidationPipe())
     login(@Body() data: UserDto) {
         return this.userService.login(data);
     }
 
-    @Post('register')
+    @Post('auth/register')
     @UsePipes(new ValidationPipe())
     register(@Body() data: UserDto) {
         return this.userService.register(data);
