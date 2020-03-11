@@ -41,4 +41,12 @@ export class UserService {
 
         return user.toResponseObject();
     }
+
+    async read(username: string) {
+        const user = await this.userRepository.findOne({
+            where: { username },
+            relations: ['comments'],
+        });
+        return user.toResponseObject();
+    }
 }

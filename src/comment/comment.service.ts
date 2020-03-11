@@ -16,8 +16,15 @@ export class CommentService {
     ) {
     }
 
-    async showAll(): Promise<CommentResponseObject[]> {
-        const comments = await this.commentRepository.find({relations: ['author']});
+    async showAll(page = 1,newest?: boolean): Promise<CommentResponseObject[]> {
+        const comments = await this.commentRepository.find(
+            {
+                relations: ['author'],
+                take: 25,
+                skip: 25 * (page - 1),
+                order: newest && { created: 'DESC' },
+            }
+            );
         return comments.map( comment => comment.toResponseObject());
     }
 
