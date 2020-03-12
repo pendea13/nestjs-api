@@ -11,6 +11,7 @@ import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
 import {UserResponseObject} from "./user.dto";
 import {CommentEntity} from "../comment/comment.entity";
+import {PostEntity} from "../post/post.entity";
 
 @Entity('user')
 export class UserEntity {
@@ -27,6 +28,9 @@ export class UserEntity {
 
     @Column('text')
     password: string;
+
+    @OneToMany(type => PostEntity, post => post.author)
+    posts: PostEntity[];
 
     @OneToMany(type => CommentEntity, comment => comment.author)
     comments: CommentEntity[];
