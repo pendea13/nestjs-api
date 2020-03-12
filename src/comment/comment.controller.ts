@@ -14,15 +14,16 @@ export class CommentController {
     ) {
     }
 
-    @Post()
+    @Post(':postId')
     @UseGuards(new AuthGuard())
     @UsePipes(new ValidationPipe())
-    create(@User('id') userId, @Body() data: CommentDto) {
-        return this.commentService.create(userId, data);
+    create(@User('id') userId, @Param('postId') postId: string, @Body() data: CommentDto) {
+        return this.commentService.create(userId, postId, data);
     }
 
     @Get()
-    showAll(@Query('page') page: number){
+    @UseGuards(new AuthGuard())
+    showAll(@Query('page') page?: number){
         return this.commentService.showAll(page);
     }
 
