@@ -19,7 +19,7 @@ export class PostService {
     async showAll(page = 1,newest?: boolean): Promise<PostResponseObject[]>{
         const posts = await this.postRepository.find(
             {
-                relations:['author'],
+                relations:['author','comments', 'comments.author'],
                 take: 25,
                 skip: 25 * (page - 1),
                 order: newest && { created: 'DESC' }
