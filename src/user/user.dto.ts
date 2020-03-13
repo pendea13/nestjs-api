@@ -14,11 +14,15 @@ export class UserDto {
 
 export class UserResponseObject {
 
+    @ApiProperty()
     id: string;
 
+    @ApiProperty()
     username: string;
 
+    @ApiProperty()
     created: Date;
 
+    @ApiProperty()
     token?: string;
 }

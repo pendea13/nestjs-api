@@ -8,26 +8,34 @@ export class PostDto {
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    title:string;
+    title: string;
 
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    description:string;
+    description: string;
 }
+
 export class PostResponseObject {
 
+    @ApiProperty()
     id: string;
 
+    @ApiProperty()
     title: string;
 
+    @ApiProperty()
     description: string;
 
+    @ApiProperty()
     author: UserResponseObject;
 
+    @ApiProperty()
     comments?: CommentEntity[];
 
+    @ApiProperty()
     updated: Date;
 
+    @ApiProperty()
     created: Date;
 }

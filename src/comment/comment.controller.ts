@@ -2,10 +2,21 @@ import {Body, Controller, Get, Param, Post, Put, Query, UseGuards, UsePipes} fro
 import {UserService} from "../user/user.service";
 import {AuthGuard} from "../auth/auth.gaurd";
 import {User} from "../user/user.decorator";
-import {CommentDto} from "./comment.dto";
+import {CommentDto, CommentResponseObject} from "./comment.dto";
 import {CommentService} from "./comment.service";
 import {ValidationPipe} from "../shared/validation.pipe";
+import {
+    ApiBadRequestResponse,
+    ApiBearerAuth,
+    ApiCreatedResponse,
+    ApiNotFoundResponse,
+    ApiOkResponse,
+    ApiTags
+} from "@nestjs/swagger";
+import {PostResponseObject} from "../post/post.dto";
 
+@ApiBearerAuth()
+@ApiTags('comment')
 @Controller('api/comment')
 export class CommentController {
     constructor(
@@ -14,6 +25,9 @@ export class CommentController {
     ) {
     }
 
+    @ApiCreatedResponse({type:CommentResponseObject})
+    @ApiNotFoundResponse()
+    @ApiBadRequestResponse()
     @Post(':postId')
     @UseGuards(new AuthGuard())
     @UsePipes(new ValidationPipe())
@@ -21,17 +35,23 @@ export class CommentController {
         return this.commentService.create(userId, postId, data);
     }
 
+    @ApiOkResponse( {type: CommentResponseObject, isArray:true})
     @Get()
     @UseGuards(new AuthGuard())
     showAll(@Query('page') page?: number){
         return this.commentService.showAll(page);
     }
 
+    @ApiOkResponse( {type: CommentResponseObject})
+    @ApiNotFoundResponse()
     @Get(':id')
     show(@Param('id') id: string){
         return this.commentService.show(id);
     }
 
+    @ApiOkResponse( {type: CommentResponseObject})
+    @ApiNotFoundResponse()
+    @ApiBadRequestResponse()
     @Put(':id')
     @UseGuards(new AuthGuard())
     @UsePipes(new ValidationPipe())
