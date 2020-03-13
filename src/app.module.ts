@@ -13,7 +13,7 @@ import {MongooseModule} from "@nestjs/mongoose";
   imports: [
       CommentModule,
       UserModule,
-      MongooseModule.forRoot('mongodb://localhost:27017/nestjs'),,
+      MongooseModule.forRoot('mongodb://localhost:27017/nestjs'),
     CommentModule,
     PostModule
   ],
