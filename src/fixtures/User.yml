@@ -1,0 +1,18 @@
+entity: UserEntity
+parameters: {}
+items:
+  user1:
+    username: '{{internet.email}}'
+    password: '123456'
+  user2:
+    username: '{{internet.email}}'
+    password: '123456'
+  user3:
+    username: '{{internet.email}}'
+    password: '123456'
+  user4:
+    username: '{{internet.email}}'
+    password: '123456'
+  user5:
+    username: '{{internet.email}}'
+    password: '123456'

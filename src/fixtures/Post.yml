@@ -1,0 +1,19 @@
+entity: PostEntity
+parameters: {}
+items:
+  post1:
+    title: '{{name.title}}'
+    description: '{{lorem.sentence}}'
+    author: '@user($current)'
+  post2:
+    title: '{{name.title}}'
+    description: '{{lorem.sentence}}'
+    author: '@user($current)'
+  post3:
+    title: '{{name.title}}'
+    description: '{{lorem.sentence}}'
+    author: '@user{3..4}'
+  post4:
+    title: '{{name.title}}'
+    description: '{{lorem.sentence}}'
+    author: '@user($current)'
