@@ -2,18 +2,18 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import {TypeOrmModule} from "@nestjs/typeorm";
 import { CommentModule } from './comment/comment.module';
 import {APP_FILTER, APP_INTERCEPTOR} from "@nestjs/core";
 import {HttpErrorFilter} from "./shared/http-error.filter";
 import {LoggingInterceptor} from "./shared/logging.interceptor";
 import { PostModule } from './post/post.module';
+import {MongooseModule} from "@nestjs/mongoose";
 
 @Module({
   imports: [
       CommentModule,
       UserModule,
-    TypeOrmModule.forRoot(),
+      MongooseModule.forRoot('mongodb://localhost:27017/nestjs'),,
     CommentModule,
     PostModule
   ],
